@@ -1,0 +1,20 @@
+[
+  {
+    "model": "postapi.post",
+    "pk": 1,
+    "fields": {
+      "title": "Machine Learning Iris Classification",
+	  "description": "Machine learning ",
+	  "author": "Jeba"
+    }
+  },
+  {
+    "model": "postapi.comment",
+    "pk": 1,
+    "fields": {
+      "text": "My comment",
+      "post": 1,
+	  "author": "Jeba"
+    }
+  }
+]

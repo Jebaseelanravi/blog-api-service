@@ -15,7 +15,7 @@ class CommentType(DjangoObjectType):
 
 
 class Query(ObjectType):
-    
+
     post = graphene.Field(PostType, id=graphene.Int())
     comment = graphene.Field(CommentType, id=graphene.Int())
     posts = graphene.List(PostType)
@@ -29,7 +29,7 @@ class Query(ObjectType):
         id = kwargs.get('id')
         return Comment.objects.get(pk=id)
 
-    def resolve_posts(self, info, **kwargs):
+    def resolve_posts(self, info, ** kwargs):
         return Post.objects.all()
 
     def resolve_comments(self, info, **kwargs):
@@ -37,19 +37,17 @@ class Query(ObjectType):
 
 
 class PostInput(InputObjectType):
-    id = graphene.ID()
     title = graphene.String()
     description = graphene.String()
-    publish_date = graphene.DateTime()
     author = graphene.String()
 
 
 class CommentInput(InputObjectType):
-    id = graphene.ID()
-    post = graphene.Field(PostInput)
+
+    # post = graphene.Field(PostType)
     text = graphene.String()
     author = graphene.String()
-    commented_on = graphene.DateTime()
+    postId = graphene.Int()
 
 
 class CreatePost(graphene.Mutation):
@@ -60,11 +58,10 @@ class CreatePost(graphene.Mutation):
     post = graphene.Field(PostType)
 
     @staticmethod
-    def mutate(root, info, id, input=None):
+    def mutate(root, info, id=None, input=None):
         ok = True
         post_instance = Post(title=input.title,
                              description=input.description,
-                             publish_date=input.publish_date,
                              author=input.author)
         post_instance.save()
         return CreatePost(ok, post_instance)
@@ -78,9 +75,9 @@ class CreateComment(graphene.Mutation):
     comment = graphene.Field(CommentType)
 
     @staticmethod
-    def mutate(self, info, id, input=None):
+    def mutate(self, info, input=None):
         ok = False
-        comment_instance = Comment(text=input.text, commented_on=input.commented_on, author=input.author)
+        comment_instance = Comment(text=input.text, author=input.author,post_id = input.postId)
         comment_instance.save()
         ok = True
         return CreateComment(ok, comment_instance)
@@ -98,7 +95,9 @@ class UpdatePost(graphene.Mutation):
     def mutate(self, info, id, input):
         ok = False
         post_instance = Post.objects.get(pk=id)
-        post_instance = input
+        post_instance.title = input.title
+        post_instance.description = input.description
+        post_instance.author = input.author
         post_instance.save()
         ok = True
         return UpdatePost(ok, post_instance)
