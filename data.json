@@ -3,8 +3,8 @@
     "model": "postapi.post",
     "pk": 1,
     "fields": {
-      "title": "Machine Learning Iris Classification",
-	  "description": "Machine learning ",
+      "title": "My post - 1 ",
+	  "description": "My first post on Django ",
 	  "author": "Jeba"
     }
   },
@@ -12,7 +12,7 @@
     "model": "postapi.comment",
     "pk": 1,
     "fields": {
-      "text": "My comment",
+      "text": "Post -1 looks cools",
       "post": 1,
 	  "author": "Jeba"
     }
