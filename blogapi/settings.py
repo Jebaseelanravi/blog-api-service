@@ -16,7 +16,6 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
@@ -26,8 +25,7 @@ SECRET_KEY = 'hy#7-y$9h%pxdlzb514l+p^@s8y@v=ih-q&ghv)%n@-sz3z7#y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['jeba-blogapi.herokuapp.com','localhost','127.0.0.1']
-
+ALLOWED_HOSTS = ['jeba-blogapi.herokuapp.com', 'localhost', '127.0.0.1']
 
 # Application definition
 
@@ -78,17 +76,29 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'blogapi.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+# postgres://kyestjyhchkbsm:aa4ae40297eaf8eaeb8a743c66243d391bfcf31f25994292116651d99dda8ae9@ec2-54-211-77-238.compute-1.amazonaws.com:5432/d50o34mb1fjs54
+ENV = "PRD"
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if ENV == 'DEV':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
-
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': 'd50o34mb1fjs54',
+            'HOST': 'ec2-54-211-77-238.compute-1.amazonaws.com',
+            'PORT': 5432,
+            'USER': 'kyestjyhchkbsm',
+            'PASSWORD': 'aa4ae40297eaf8eaeb8a743c66243d391bfcf31f25994292116651d99dda8ae9'
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -108,7 +118,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
@@ -122,10 +131,9 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
