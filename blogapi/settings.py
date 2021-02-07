@@ -26,7 +26,7 @@ SECRET_KEY = 'hy#7-y$9h%pxdlzb514l+p^@s8y@v=ih-q&ghv)%n@-sz3z7#y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['jeba-blogapi.herokuapp.com','localhost','127.0.0.1']
 
 
 # Application definition
