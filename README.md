@@ -47,15 +47,24 @@ python manage.py runserver 8000
 
 ```
 
+Run test
+
+```shell script
+python manage.py  test
+```
+
 Explore the application
 
 Launch http://127.0.0.1:8000/graphql/  in your browser
+
+
 
 
 ### API's Implemented
 
 1. ##### Implemented  a createPost() mutation which will create a Post (a blogpost object) with attributes {title, description, publish_date, author (just a name as TextField)}
     ```json5
+        # GraphQL Query 
         mutation createpost{
           
           createPost(input:{     
@@ -71,7 +80,7 @@ Launch http://127.0.0.1:8000/graphql/  in your browser
               publishDate
             }
           }
-        
+        # Response 
         {
           "data": {
             "createPost": {
@@ -90,6 +99,7 @@ Launch http://127.0.0.1:8000/graphql/  in your browser
     ```
 2. ##### Implement a updatePost($id) mutation which will update a Post attributes by $id 
       ```json5
+        # GraphQL Query 
         mutation updatepost {
           updatePost(
             id:2,
@@ -111,7 +121,7 @@ Launch http://127.0.0.1:8000/graphql/  in your browser
             }
           }}
         
-        
+        # Response 
         {
           "data": {
             "updatePost": {
@@ -128,6 +138,7 @@ Launch http://127.0.0.1:8000/graphql/  in your browser
       ```
 3. ##### Implement a createComment() mutation which will create a Comment object with attributes {post (the blogpost object), text, author (just the name as a TextField)}
     ```json5
+       # GraphQL Query 
         mutation createcomment{
           createComment(input:{
             text: "Post 2 is good",   
@@ -144,7 +155,7 @@ Launch http://127.0.0.1:8000/graphql/  in your browser
           }
         }
         
-        
+        # Response 
         {
           "data": {
             "createComment": {
@@ -159,13 +170,14 @@ Launch http://127.0.0.1:8000/graphql/  in your browser
       ```
 4. ##### Implement a deleteComment($id) mutation to delete the given Comment by $id.
     ```json5
-                mutation deletecomment{
+      # GraphQL Query 
+      mutation deletecomment{
           deleteComment (id:2)
           {
             ok
           }
         }
-        
+        # Response 
         {
           "data": {
             "deleteComment": {
@@ -176,6 +188,7 @@ Launch http://127.0.0.1:8000/graphql/  in your browser
       ```
 5. ##### Implement a post() query to list all the posts
     ```json5
+       # GraphQL Query 
         query getposts {
          posts{
           id
@@ -190,7 +203,7 @@ Launch http://127.0.0.1:8000/graphql/  in your browser
         }
         }
         
-        
+        # Response 
         {
           "data": {
             "posts": [
@@ -226,6 +239,7 @@ Launch http://127.0.0.1:8000/graphql/  in your browser
       ```
 6. ##### Implement a post($id) query to get details of a post and all its comments
     ```json5
+     # GraphQL Query 
      query getpostbyid{
           post(id:1){
             id
@@ -235,6 +249,7 @@ Launch http://127.0.0.1:8000/graphql/  in your browser
             }
           }
         }
+         # Response 
         {
           "data": {
             "post": {
