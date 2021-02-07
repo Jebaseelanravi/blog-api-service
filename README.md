@@ -1,14 +1,16 @@
 # blog-api-service
 Simple Blog API service built using Django,GraphQL and Python
 
+### Live Demo on Heroku
 
+https://jeba-blogapi.herokuapp.com/graphql
 
 ## How to run this project in your machine
 
-### prerequisite 
+#### prerequisite 
 - Python 3
 
-### Installation procedure
+#### Installation procedure
 
 Clone the repo
 
